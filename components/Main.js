@@ -1,5 +1,5 @@
 "use client";
-import { NumericFormat } from "react-number-format";
+import ResponsiveForm from "./ResponsiveForm.js";
 
 function Main() {
   return (
@@ -18,62 +18,7 @@ function Main() {
         </div>
       </section>
 
-      <section className="flex flex-col lg:flex-row lg:justify-between gap-4">
-        <div className="flex flex-col">
-          <span className="pb-1 text-xs">Starting Amount: </span>
-          <NumericFormat
-            className="input input-sm input-bordered w-full lg:w-36"
-            placeholder="$"
-            thousandSeparator={true}
-            prefix="$ "
-            allowNegative={false}
-            defaultValue={1000}
-          />
-        </div>
-
-        <div className="flex flex-col lg:flex-row lg:gap-2">
-          <div className="flex flex-col">
-            <span className="pb-1 text-xs">Additional Contribution: </span>
-            <NumericFormat
-              className="input input-sm input-bordered w-full lg:w-36"
-              placeholder="$"
-              thousandSeparator={true}
-              prefix="$ "
-              allowNegative={false}
-            />
-          </div>
-
-          <div className="flex flex-col lg:mt-0">
-            <span className="pb-1 text-xs">&nbsp;</span>
-            <select
-              className="select select-sm select-bordered w-full lg:w-36"
-              defaultValue="Annually"
-            >
-              <option>Annually</option>
-              <option>Monthly</option>
-            </select>
-          </div>
-        </div>
-
-        <div className="flex flex-col">
-          <span className="pb-1 text-xs">Rate of return: </span>
-          <NumericFormat
-            className="input input-sm w-full lg:w-20 input-bordered"
-            suffix={".00%"}
-            placeholder="%"
-            allowNegative={false}
-            defaultValue={8}
-          />
-        </div>
-        <div className="flex flex-col">
-          <span className="pb-1 text-xs">Years to grow: </span>
-          <NumericFormat
-            className="input input-sm w-full lg:w-20 input-bordered"
-            allowNegative={false}
-            defaultValue={5}
-          />
-        </div>
-      </section>
+      <ResponsiveForm />
 
       <section className="flex justify-center content-center py-20">
         <h2>Total worth: </h2>
