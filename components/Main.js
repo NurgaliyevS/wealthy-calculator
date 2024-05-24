@@ -19,10 +19,6 @@ function Main() {
       </section>
 
       <ResponsiveForm />
-
-      <section className="flex justify-center content-center py-20">
-        <h2>Total worth: </h2>
-      </section>
     </>
   );
 }
