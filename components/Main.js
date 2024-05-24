@@ -5,7 +5,7 @@ function Main() {
   return (
     <>
       <section>
-        <div className="max-w-7xl mx-auto flex flex-col items-center gap-16 lg:gap-20 lg:items-start py-8 lg:py-20">
+        <div className="max-w-7xl mx-auto flex flex-col gap-16 lg:gap-20 lg:items-start py-8 lg:py-20">
           <h1 className="flex font-extrabold text-4xl lg:text-6xl tracking-tight md:-mb-4 flex-col gap-3 items-center lg:items-start">
             <span className="relative">Invest first &</span>
             <span className="whitespace-nowrap relative">
