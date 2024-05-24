@@ -18,11 +18,11 @@ function Main() {
         </div>
       </section>
 
-      <section className="flex lg:justify-between">
+      <section className="flex flex-col lg:flex-row lg:justify-between gap-4">
         <div className="flex flex-col">
           <span className="pb-1 text-xs">Starting Amount: </span>
           <NumericFormat
-            className="input input-sm input-bordered w-36"
+            className="input input-sm input-bordered w-full lg:w-36"
             placeholder="$"
             thousandSeparator={true}
             prefix="$ "
@@ -31,11 +31,11 @@ function Main() {
           />
         </div>
 
-        <div className="flex gap-2">
+        <div className="flex flex-col lg:flex-row lg:gap-2">
           <div className="flex flex-col">
             <span className="pb-1 text-xs">Additional Contribution: </span>
             <NumericFormat
-              className="input input-sm input-bordered w-36"
+              className="input input-sm input-bordered w-full lg:w-36"
               placeholder="$"
               thousandSeparator={true}
               prefix="$ "
@@ -43,10 +43,10 @@ function Main() {
             />
           </div>
 
-          <div className="flex flex-col">
+          <div className="flex flex-col lg:mt-0">
             <span className="pb-1 text-xs">&nbsp;</span>
             <select
-              className="select select-sm select-bordered w-36"
+              className="select select-sm select-bordered w-full lg:w-36"
               defaultValue="Annually"
             >
               <option>Annually</option>
@@ -58,7 +58,7 @@ function Main() {
         <div className="flex flex-col">
           <span className="pb-1 text-xs">Rate of return: </span>
           <NumericFormat
-            className="input input-sm w-20 input-bordered"
+            className="input input-sm w-full lg:w-20 input-bordered"
             suffix={".00%"}
             placeholder="%"
             allowNegative={false}
@@ -68,7 +68,7 @@ function Main() {
         <div className="flex flex-col">
           <span className="pb-1 text-xs">Years to grow: </span>
           <NumericFormat
-            className="input input-sm w-20 input-bordered"
+            className="input input-sm w-full lg:w-20 input-bordered"
             allowNegative={false}
             defaultValue={5}
           />
