@@ -5,8 +5,8 @@ function Main() {
   return (
     <>
       <section>
-        <div className="max-w-7xl mx-auto flex flex-col gap-16 lg:gap-20 lg:items-start py-8 lg:py-20">
-          <h1 className="flex font-extrabold text-4xl lg:text-6xl tracking-tight md:-mb-4 flex-col gap-3 items-center lg:items-start">
+        <div className="max-w-7xl mx-auto flex flex-col gap-10 lg:gap-20 lg:items-start py-8 lg:py-20">
+          <h1 className="flex font-extrabold text-4xl lg:text-6xl tracking-tight md:-mb-4 flex-col gap-3 lg:items-start">
             <span className="relative">Invest first &</span>
             <span className="whitespace-nowrap relative">
               spend what's left
@@ -75,7 +75,9 @@ function Main() {
         </div>
       </section>
 
-      <section></section>
+      <section className="flex justify-center content-center py-20">
+        <h2>Total worth: </h2>
+      </section>
     </>
   );
 }
