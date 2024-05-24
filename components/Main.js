@@ -4,7 +4,7 @@ import { NumericFormat } from "react-number-format";
 function Main() {
   return (
     <>
-      <section className="">
+      <section>
         <div className="max-w-7xl mx-auto flex flex-col items-center gap-16 lg:gap-20 lg:items-start py-8 lg:py-20">
           <h1 className="flex font-extrabold text-4xl lg:text-6xl tracking-tight md:-mb-4 flex-col gap-3 items-center lg:items-start">
             <span className="relative">Invest first &</span>
@@ -18,64 +18,64 @@ function Main() {
         </div>
       </section>
 
-      <section className="flex gap-4">
-        <div className="flex w-full max-w-xs">
-          <div className="flex w-full">
-            <label className="form-control">
-              <div className="label">
-                <span className="label-text">Starting amount:</span>
-              </div>
-              <NumericFormat
-                className="input input-sm input-bordered"
-                placeholder="$"
-                thousandSeparator={true}
-                prefix="$ "
-                allowNegative={false}
-              />
-            </label>
-          </div>
+      <section className="flex lg:justify-between">
+        <div className="flex flex-col">
+          <span className="pb-1 text-xs">Starting Amount: </span>
+          <NumericFormat
+            className="input input-sm input-bordered w-36"
+            placeholder="$"
+            thousandSeparator={true}
+            prefix="$ "
+            allowNegative={false}
+            defaultValue={1000}
+          />
         </div>
 
-        <div className="flex ml-4 w-full max-w-30">
-          <label className="form-control">
-            <div className="label">
-              <span className="label-text">Additional Contribution: </span>
-            </div>
+        <div className="flex gap-2">
+          <div className="flex flex-col">
+            <span className="pb-1 text-xs">Additional Contribution: </span>
             <NumericFormat
-              className="input input-sm input-bordered"
+              className="input input-sm input-bordered w-36"
               placeholder="$"
               thousandSeparator={true}
               prefix="$ "
               allowNegative={false}
             />
-          </label>
-        </div>
+          </div>
 
-        <div className="flex max-w-xs">
-          <label className="form-control w-full">
-            <div className="label">
-              <span className="label-text">&nbsp;</span>
-            </div>
-            <select className="select select-sm select-bordered w-40">
+          <div className="flex flex-col">
+            <span className="pb-1 text-xs">&nbsp;</span>
+            <select
+              className="select select-sm select-bordered w-36"
+              defaultValue="Annually"
+            >
               <option>Annually</option>
               <option>Monthly</option>
             </select>
-          </label>
+          </div>
         </div>
 
-        <div className="flex w-full max-w-30">
-          <label className="form-control max-w-30">
-            <div className="label">
-              <span className="label-text">Rate of return:</span>
-            </div>
-            <input
-              type="number"
-              placeholder="%"
-              className="input input-sm input-bordered"
-            />
-          </label>
+        <div className="flex flex-col">
+          <span className="pb-1 text-xs">Rate of return: </span>
+          <NumericFormat
+            className="input input-sm w-20 input-bordered"
+            suffix={".00%"}
+            placeholder="%"
+            allowNegative={false}
+            defaultValue={8}
+          />
+        </div>
+        <div className="flex flex-col">
+          <span className="pb-1 text-xs">Years to grow: </span>
+          <NumericFormat
+            className="input input-sm w-20 input-bordered"
+            allowNegative={false}
+            defaultValue={5}
+          />
         </div>
       </section>
+
+      <section></section>
     </>
   );
 }
