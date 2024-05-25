@@ -3,7 +3,12 @@ import { NumericFormat } from "react-number-format";
 import { useForm, Controller } from "react-hook-form";
 
 const ResponsiveForm = () => {
-  const { control, handleSubmit, register } = useForm();
+  const {
+    control,
+    handleSubmit,
+    register,
+    formState: { errors, isValid },
+  } = useForm();
   const [totalWorth, setTotalWorth] = useState(null);
 
   const onSubmit = (data) => {
@@ -35,8 +40,6 @@ const ResponsiveForm = () => {
       P * Math.pow(1 + ratePerPeriod, periods) +
       (C * (Math.pow(1 + ratePerPeriod, periods) - 1)) / ratePerPeriod;
 
-    console.log(futureValue, "futureValue");
-
     setTotalWorth(futureValue.toFixed(2));
   };
 
@@ -49,15 +52,23 @@ const ResponsiveForm = () => {
             name="startingAmount"
             control={control}
             defaultValue="1000"
+            rules={{ required: "Required" }}
             render={({ field }) => (
-              <NumericFormat
-                {...field}
-                className="input input-sm input-bordered w-full lg:w-36"
-                placeholder="$"
-                thousandSeparator={true}
-                prefix="$ "
-                allowNegative={false}
-              />
+              <>
+                <NumericFormat
+                  {...field}
+                  className="input input-sm input-bordered w-full lg:w-36"
+                  placeholder="$"
+                  thousandSeparator={true}
+                  prefix="$ "
+                  allowNegative={false}
+                />
+                {errors.startingAmount && (
+                  <span className="text-red-400 text-xs mt-1">
+                    {errors.startingAmount.message}
+                  </span>
+                )}
+              </>
             )}
           />
         </div>
@@ -101,44 +112,60 @@ const ResponsiveForm = () => {
             name="rateOfReturn"
             control={control}
             defaultValue="8"
+            rules={{ required: "Required" }}
             render={({ field }) => (
-              <NumericFormat
-                {...field}
-                className="input input-sm input-bordered w-full lg:w-20"
-                suffix={".00%"}
-                placeholder="%"
-                allowNegative={false}
-              />
+              <>
+                <NumericFormat
+                  {...field}
+                  className="input input-sm input-bordered w-full lg:w-20"
+                  suffix={".00%"}
+                  placeholder="%"
+                  allowNegative={false}
+                />
+                {errors.rateOfReturn && (
+                  <span className="text-red-500 text-xs mt-1">
+                    {errors.rateOfReturn.message}
+                  </span>
+                )}
+              </>
             )}
           />
         </div>
 
         <div className="flex flex-col">
-          <span className="pb-1 text-xs">Years to grow: </span>
+          <span className="pb-1 text-xs">Years to invest: </span>
           <Controller
             name="yearsToGrow"
             control={control}
             defaultValue="5"
+            rules={{ required: "Required" }}
             render={({ field }) => (
-              <NumericFormat
-                {...field}
-                className="input input-sm input-bordered w-full lg:w-20"
-                allowNegative={false}
-              />
+              <>
+                <NumericFormat
+                  {...field}
+                  className="input input-sm input-bordered w-full lg:w-20"
+                  allowNegative={false}
+                />
+                {errors.yearsToGrow && (
+                  <span className="text-red-500 text-xs m-0 p-0 mt-1">
+                    {errors.yearsToGrow.message}
+                  </span>
+                )}
+              </>
             )}
           />
         </div>
       </section>
 
-      <button type="submit" className="btn btn-primary mt-4">
+      <button
+        type="submit"
+        className={`btn mt-4 ${isValid ? "btn-primary" : "btn-neutral"}`}
+      >
         Calculate
       </button>
-
-      {totalWorth && (
-        <section className="flex justify-center content-center py-20">
-          <h2>Total worth: ${totalWorth}</h2>
-        </section>
-      )}
+      <div className="flex justify-center content-center py-10">
+        <h2>Total worth: ${totalWorth ? totalWorth : 0}</h2>
+      </div>
     </form>
   );
 };
