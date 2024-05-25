@@ -163,8 +163,11 @@ const ResponsiveForm = () => {
       >
         Calculate
       </button>
-      <div className="flex justify-center content-center py-10">
-        <h2>Total worth: ${totalWorth ? totalWorth : 0}</h2>
+      <div className="flex gap-2 justify-center content-center py-10">
+        <h3 className="text-lg">Total worth:</h3>
+        <span className="text-indigo-400 text-xl font-bold">
+          ${totalWorth ? totalWorth : 0}
+        </span>
       </div>
     </form>
   );
