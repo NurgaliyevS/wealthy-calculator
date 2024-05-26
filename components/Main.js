@@ -1,5 +1,6 @@
 "use client";
 import ResponsiveForm from "./ResponsiveForm.js";
+import ChartComponent from "./ChartComponent.js";
 
 function Main() {
   return (
@@ -19,6 +20,8 @@ function Main() {
       </section>
 
       <ResponsiveForm />
+
+      <div className="mt-10"></div>
     </>
   );
 }
