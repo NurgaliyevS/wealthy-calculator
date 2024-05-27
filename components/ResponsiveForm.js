@@ -4,39 +4,48 @@ import { useForm, Controller } from "react-hook-form";
 import ChartComponent from "./ChartComponent";
 
 const ResponsiveForm = () => {
-  const { control, handleSubmit, register, formState: { errors, isValid } } = useForm();
+  const {
+    control,
+    handleSubmit,
+    register,
+    formState: { errors, isValid },
+  } = useForm();
   const [totalWorth, setTotalWorth] = useState(null);
   const [chartData, setChartData] = useState([]);
 
   const onSubmit = (data) => {
-    const parseNumericValue = (value) => parseFloat(String(value).replace(/[^0-9.-]+/g, ""));
-    
+    const parseNumericValue = (value) =>
+      parseFloat(String(value).replace(/[^0-9.-]+/g, ""));
+
     const P = parseNumericValue(data.startingAmount);
     const r = parseNumericValue(data.rateOfReturn) / 100;
     const n = parseNumericValue(data.yearsToGrow);
-    const C = data.additionalContribution ? parseNumericValue(data.additionalContribution) : 0;
+    const C = data.additionalContribution
+      ? parseNumericValue(data.additionalContribution)
+      : 0;
     const contributionFrequency = data.contributionFrequency;
-  
+
     let periods = n;
     let ratePerPeriod = r;
-  
+
     if (contributionFrequency === "Monthly") {
       periods = n * 12;
       ratePerPeriod = r / 12;
     }
-  
+
     // Calculate future value for the final amount
-    const futureValue = P * Math.pow(1 + ratePerPeriod, periods) +
+    const futureValue =
+      P * Math.pow(1 + ratePerPeriod, periods) +
       (C * (Math.pow(1 + ratePerPeriod, periods) - 1)) / ratePerPeriod;
-  
-    setTotalWorth(futureValue.toFixed(2));
-  
+
+    setTotalWorth(Math.round(futureValue).toLocaleString());
+
     // Create chart data
     const newChartData = [];
     let accumulatedAmount = P;
     let totalContributions = 0;
     let totalInterest = 0;
-  
+
     for (let i = 1; i <= periods; i++) {
       const interestEarned = accumulatedAmount * ratePerPeriod;
       totalInterest += interestEarned;
@@ -45,13 +54,13 @@ const ResponsiveForm = () => {
         totalContributions += C;
         accumulatedAmount += C;
       }
-  
+
       if (contributionFrequency === "Monthly" && i % 12 === 0) {
         newChartData.push({
           year: new Date().getFullYear() + i / 12,
           startingAmount: P,
           totalContributions,
-          totalInterest,
+          totalInterest: Math.round(totalInterest),
           total: accumulatedAmount,
         });
       } else if (contributionFrequency === "Annually") {
@@ -59,14 +68,14 @@ const ResponsiveForm = () => {
           year: new Date().getFullYear() + i,
           startingAmount: P,
           totalContributions,
-          totalInterest,
+          totalInterest: Math.round(totalInterest),
           total: accumulatedAmount,
         });
       }
     }
-  
+
     setChartData(newChartData);
-  };  
+  };
 
   return (
     <>
