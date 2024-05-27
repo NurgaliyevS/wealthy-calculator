@@ -16,39 +16,57 @@ const ResponsiveForm = () => {
     const n = parseNumericValue(data.yearsToGrow);
     const C = data.additionalContribution ? parseNumericValue(data.additionalContribution) : 0;
     const contributionFrequency = data.contributionFrequency;
-
+  
     let periods = n;
     let ratePerPeriod = r;
-
+  
     if (contributionFrequency === "Monthly") {
       periods = n * 12;
       ratePerPeriod = r / 12;
     }
-
+  
+    // Calculate future value for the final amount
     const futureValue = P * Math.pow(1 + ratePerPeriod, periods) +
       (C * (Math.pow(1 + ratePerPeriod, periods) - 1)) / ratePerPeriod;
-
+  
     setTotalWorth(futureValue.toFixed(2));
-
+  
+    // Create chart data
     const newChartData = [];
-    let startingAmount = P;
+    let accumulatedAmount = P;
     let totalContributions = 0;
-
-    for (let i = 0; i <= n; i++) {
-      const interestEarned = (startingAmount + totalContributions) * ratePerPeriod;
-      totalContributions += C;
-      const total = startingAmount + totalContributions + interestEarned;
-      newChartData.push({
-        year: new Date().getFullYear() + i,
-        startingAmount,
-        totalContributions,
-        totalInterest: interestEarned,
-        total,
-      });
+    let totalInterest = 0;
+  
+    for (let i = 1; i <= periods; i++) {
+      const interestEarned = accumulatedAmount * ratePerPeriod;
+      totalInterest += interestEarned;
+      accumulatedAmount += interestEarned;
+      if (C > 0) {
+        totalContributions += C;
+        accumulatedAmount += C;
+      }
+  
+      if (contributionFrequency === "Monthly" && i % 12 === 0) {
+        newChartData.push({
+          year: new Date().getFullYear() + i / 12,
+          startingAmount: P,
+          totalContributions,
+          totalInterest,
+          total: accumulatedAmount,
+        });
+      } else if (contributionFrequency === "Annually") {
+        newChartData.push({
+          year: new Date().getFullYear() + i,
+          startingAmount: P,
+          totalContributions,
+          totalInterest,
+          total: accumulatedAmount,
+        });
+      }
     }
-
+  
     setChartData(newChartData);
-  };
+  };  
 
   return (
     <>
