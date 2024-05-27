@@ -4,14 +4,12 @@ import React from "react";
 import { Bar, YAxis, XAxis, CartesianGrid, Tooltip, BarChart } from "recharts";
 
 const ChartComponent = ({ chartData }) => {
-  console.log(chartData, 'chartData');
+  const hasContributions = chartData.some(
+    (data) => data?.totalContributions > 0
+  );
 
   return (
-    <BarChart
-      width={600}
-      height={300}
-      data={chartData}
-    >
+    <BarChart width={600} height={300} data={chartData}>
       <CartesianGrid strokeDasharray="0.1 0.1" />
       <YAxis />
       <XAxis dataKey="year" />
@@ -22,12 +20,14 @@ const ChartComponent = ({ chartData }) => {
         fill="#8884d8"
         name="Starting Amount"
       />
-      <Bar
-        dataKey="totalContributions"
-        stackId="a"
-        fill="#82ca9d"
-        name="Total Contributions"
-      />
+      {hasContributions && (
+        <Bar
+          dataKey="totalContributions"
+          stackId="a"
+          fill="#82ca9d"
+          name="Total Contributions"
+        />
+      )}
       <Bar
         dataKey="totalInterest"
         stackId="a"
