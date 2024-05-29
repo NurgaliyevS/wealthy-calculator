@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { NumericFormat } from "react-number-format";
 import { useForm, Controller } from "react-hook-form";
 import ChartComponent from "./ChartComponent";
+import PieChartComponent from "./PieChartComponent";
 
 const ResponsiveForm = () => {
   const {
@@ -206,7 +207,12 @@ const ResponsiveForm = () => {
         </div>
       </form>
 
-      {chartData.length > 0 && <ChartComponent chartData={chartData} />}
+      <div className="flex flex-col lg:flex-row gap-10 lg:gap-0 items-center h-96">
+        {chartData.length > 0 && <ChartComponent chartData={chartData} />}
+        {chartData.length > 0 && <PieChartComponent chartData={chartData} />}
+      </div>
+
+      <div className="mb-96">asd</div>
     </>
   );
 };
