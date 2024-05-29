@@ -26,7 +26,6 @@ const ChartComponent = ({ chartData }) => {
   };
 
   useEffect(() => {
-    // Check if any y-axis labels exceed 1000
     const requiresMarginAdjustment = chartData.some(
       (data) =>
         data.startingAmount >= 1000000 ||
@@ -37,44 +36,42 @@ const ChartComponent = ({ chartData }) => {
   }, [chartData]);
 
   return (
-    <>
-      <div className="w-full h-64">
-        <h5 className="mb-3 lg:mb-10">Investment Growth Over Time</h5>
-        <div className="w-full h-full">
-          <ResponsiveContainer width="100%" height="100%">
-            <BarChart
-              data={chartData}
-              margin={{ left: requiresMargin ? 30 : 0 }}
-            >
-              <CartesianGrid strokeDasharray="0.1 0.1" />
-              <YAxis tickFormatter={formatYAxis} />
-              <XAxis dataKey="year" />
-              <Tooltip formatter={(value) => `$${value.toLocaleString()}`} />
+    <div className="w-full h-64">
+      <h5 className="mb-3 lg:mb-10">Investment Growth Over Time</h5>
+      <div className="w-full h-full">
+        <ResponsiveContainer width="100%" height="100%">
+          <BarChart
+            data={chartData}
+            margin={{ left: requiresMargin ? 30 : 0 }}
+          >
+            <CartesianGrid strokeDasharray="0.1 0.1" />
+            <YAxis tickFormatter={formatYAxis} />
+            <XAxis dataKey="year" />
+            <Tooltip formatter={(value) => `$${value.toLocaleString()}`} />
+            <Bar
+              dataKey="startingAmount"
+              stackId="a"
+              fill="#8884d8"
+              name="Starting Amount"
+            />
+            {hasContributions && (
               <Bar
-                dataKey="startingAmount"
+                dataKey="totalContributions"
                 stackId="a"
-                fill="#8884d8"
-                name="Starting Amount"
+                fill="#82ca9d"
+                name="Total Contributions"
               />
-              {hasContributions && (
-                <Bar
-                  dataKey="totalContributions"
-                  stackId="a"
-                  fill="#82ca9d"
-                  name="Total Contributions"
-                />
-              )}
-              <Bar
-                dataKey="totalInterest"
-                stackId="a"
-                fill="#ffc658"
-                name="Total Interest Earned"
-              />
-            </BarChart>
-          </ResponsiveContainer>
-        </div>
+            )}
+            <Bar
+              dataKey="totalInterest"
+              stackId="a"
+              fill="#ffc658"
+              name="Total Interest Earned"
+            />
+          </BarChart>
+        </ResponsiveContainer>
       </div>
-    </>
+    </div>
   );
 };
 
