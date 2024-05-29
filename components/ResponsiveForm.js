@@ -207,12 +207,10 @@ const ResponsiveForm = () => {
         </div>
       </form>
 
-      <div className="flex flex-col lg:flex-row gap-10 lg:gap-0 items-center h-96">
+      <div className="flex flex-col lg:flex-row gap-10 lg:gap-0 lg:h-96 items-baseline">
         {chartData.length > 0 && <ChartComponent chartData={chartData} />}
         {chartData.length > 0 && <PieChartComponent chartData={chartData} />}
       </div>
-
-      <div className="mb-96">asd</div>
     </>
   );
 };
