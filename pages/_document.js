@@ -3,7 +3,7 @@ import { Analytics } from "@vercel/analytics/react"
 
 export default function Document() {
   return (
-    <Html lang="en">
+    <Html lang="en" data-theme="dark">
       <Head />
       <body>
         <Main />
