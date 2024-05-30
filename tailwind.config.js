@@ -9,7 +9,7 @@ module.exports = {
   theme: false,
   plugins: [daisyui],
   daisyui: {
-    themes: false,
+    themes: "dark",
     darkTheme: "dark",
   },
 };
