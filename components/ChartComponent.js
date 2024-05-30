@@ -36,8 +36,8 @@ const ChartComponent = ({ chartData }) => {
   }, [chartData]);
 
   return (
-    <div className="w-full h-64">
-      <h5 className="mb-3 lg:mb-10">Investment Growth Over Time</h5>
+    <div className="w-full h-72">
+      <h5 className="mb-6 lg:mb-10 text-center lg:text-left">Investment Growth Over Time</h5>
       <div className="w-full h-full">
         <ResponsiveContainer width="100%" height="100%">
           <BarChart

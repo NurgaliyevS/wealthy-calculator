@@ -199,17 +199,21 @@ const ResponsiveForm = () => {
         >
           Calculate
         </button>
-        <div className="flex gap-2 justify-center content-center py-10">
-          <h3 className="text-lg">Total Investment:</h3>
-          <span className="text-primary text-xl font-bold">
+        <div className="flex gap-2 justify-center content-center pt-12 pb-16 lg:pt-20 lg:pb-28">
+          <h3 className="font-bold text-xl lg:text-2xl">Total Investment:</h3>
+          <span className="text-primary text-xl lg:text-2xl font-bold opacity-80">
             ${totalWorth ? totalWorth : 0}
           </span>
         </div>
       </form>
 
-      <div className="flex flex-col lg:flex-row gap-10 lg:gap-0 lg:h-96 items-baseline">
-        {chartData.length > 0 && <ChartComponent chartData={chartData} />}
-        {chartData.length > 0 && <PieChartComponent chartData={chartData} />}
+      <div className="flex flex-col lg:flex-row gap-20 lg:gap-0 lg:h-96 items-baseline">
+        <div className="w-full lg:w-3/6">
+          {chartData.length > 0 && <ChartComponent chartData={chartData} />}
+        </div>
+        <div className="w-full lg:w-3/6">
+          {chartData.length > 0 && <PieChartComponent chartData={chartData} />}
+        </div>
       </div>
     </>
   );

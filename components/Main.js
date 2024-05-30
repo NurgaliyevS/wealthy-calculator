@@ -1,6 +1,5 @@
 "use client";
 import ResponsiveForm from "./ResponsiveForm.js";
-import ChartComponent from "./ChartComponent.js";
 
 function Main() {
   return (

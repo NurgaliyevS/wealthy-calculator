@@ -31,18 +31,18 @@ function PieChartComponent({ chartData }) {
   ].filter(Boolean);
 
   return (
-    <div className="w-full h-64">
-      <h5 className="lg:text-center">
-        Investment Balance at Year {chartData[chartData.length - 1].year}
+    <div className="w-full h-72">
+      <h5 className="text-center">
+        Investment Balance in {chartData[chartData.length - 1].year}
       </h5>
-      <div className="w-full h-full flex">
+      <div className="w-full h-full flex flex-col items-baseline">
         <ResponsiveContainer width="100%" height="100%">
           <PieChart>
             <Pie
               data={pieChartData}
               cx="50%"
               cy="50%"
-              outerRadius={100}
+              outerRadius={80}
               fill="#8884d8"
               dataKey="value"
             >
@@ -57,6 +57,20 @@ function PieChartComponent({ chartData }) {
             <Tooltip />
           </PieChart>
         </ResponsiveContainer>
+        <div className="flex flex-col pl-0 lg:pl-10 w-full">
+          {pieChartData.map((entry, index) => (
+            <div key={index} className="flex flex-row items-baseline">
+              <span
+                className="w-3 h-3 rounded-full mr-2"
+                style={{ backgroundColor: entry.color }}
+              ></span>
+              <div className="flex justify-between w-full">
+                <p>{entry.name}</p>
+                <p>$ {entry.value.toLocaleString()}</p>
+              </div>
+            </div>
+          ))}
+        </div>
       </div>
     </div>
   );
