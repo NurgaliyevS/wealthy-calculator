@@ -3,6 +3,7 @@ import { NumericFormat } from "react-number-format";
 import { useForm, Controller } from "react-hook-form";
 import ChartComponent from "./ChartComponent";
 import PieChartComponent from "./PieChartComponent";
+import Table from "./Table";
 
 const ResponsiveForm = () => {
   const {
@@ -25,6 +26,9 @@ const ResponsiveForm = () => {
       ? parseNumericValue(data.additionalContribution)
       : 0;
     const contributionFrequency = data.contributionFrequency;
+    const additionalContribution = parseNumericValue(
+      data.additionalContribution
+    );
 
     let periods = n;
     let ratePerPeriod = r;
@@ -63,6 +67,8 @@ const ResponsiveForm = () => {
           totalContributions,
           totalInterest: Math.round(totalInterest),
           total: accumulatedAmount,
+          contributionFrequency,
+          additionalContribution,
         });
       } else if (contributionFrequency === "Annually") {
         newChartData.push({
@@ -71,6 +77,8 @@ const ResponsiveForm = () => {
           totalContributions,
           totalInterest: Math.round(totalInterest),
           total: accumulatedAmount,
+          contributionFrequency,
+          additionalContribution,
         });
       }
     }
@@ -215,6 +223,8 @@ const ResponsiveForm = () => {
           {chartData.length > 0 && <PieChartComponent chartData={chartData} />}
         </div>
       </div>
+
+      <div>{chartData.length > 0 && <Table chartData={chartData} />}</div>
     </>
   );
 };
