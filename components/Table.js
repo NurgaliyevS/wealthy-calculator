@@ -12,7 +12,7 @@ function Table({ chartData }) {
     <div>
       <div className="overflow-x-auto">
         <table className="table">
-          <thead>
+          <thead className="bg-[#8884d8] text-stone-950 leading-normal text-sm">
             <tr>
               <th className="text-center">Year</th>
               <th className="text-center">

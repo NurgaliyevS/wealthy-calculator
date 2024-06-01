@@ -228,7 +228,7 @@ const ResponsiveForm = () => {
         </div>
       </div>
 
-      <div className="w-full flex justify-between mt-0 lg:mt-10">
+      <div className="w-full lg:flex justify-between mt-16 lg:mt-10">
         <div className="flex-grow">
           {chartData.length > 0 && <Table chartData={chartData} />}
         </div>
