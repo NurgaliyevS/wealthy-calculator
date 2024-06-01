@@ -1,3 +1,5 @@
+"use client";
+
 import React, { useState } from "react";
 import { NumericFormat } from "react-number-format";
 import { useForm, Controller } from "react-hook-form";
@@ -26,9 +28,9 @@ const ResponsiveForm = () => {
       ? parseNumericValue(data.additionalContribution)
       : 0;
     const contributionFrequency = data.contributionFrequency;
-    const additionalContribution = parseNumericValue(
-      data.additionalContribution
-    );
+    const additionalContribution = data.additionalContribution
+      ? parseNumericValue(data.additionalContribution)
+      : 0;
 
     let periods = n;
     let ratePerPeriod = r;
@@ -66,9 +68,10 @@ const ResponsiveForm = () => {
           startingAmount: P,
           totalContributions,
           totalInterest: Math.round(totalInterest),
-          total: accumulatedAmount,
+          total: Math.round(accumulatedAmount),
           contributionFrequency,
           additionalContribution,
+          interestEarned: Math.round(interestEarned),
         });
       } else if (contributionFrequency === "Annually") {
         newChartData.push({
@@ -76,9 +79,10 @@ const ResponsiveForm = () => {
           startingAmount: P,
           totalContributions,
           totalInterest: Math.round(totalInterest),
-          total: accumulatedAmount,
+          total: Math.round(accumulatedAmount),
           contributionFrequency,
           additionalContribution,
+          interestEarned: Math.round(interestEarned),
         });
       }
     }
@@ -224,7 +228,11 @@ const ResponsiveForm = () => {
         </div>
       </div>
 
-      <div>{chartData.length > 0 && <Table chartData={chartData} />}</div>
+      <div className="w-full flex justify-between mt-0 lg:mt-10">
+        <div className="flex-grow">
+          {chartData.length > 0 && <Table chartData={chartData} />}
+        </div>
+      </div>
     </>
   );
 };
