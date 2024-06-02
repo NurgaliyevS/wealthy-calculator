@@ -13,7 +13,7 @@ function Main() {
             </span>
           </h1>
           <p className="text-lg opacity-80 leading-relaxed">
-            The Wealth Calculator: Everything you need to invest money wisely
+            Everything you need to invest money wisely
           </p>
         </div>
       </section>
