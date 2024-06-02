@@ -11,7 +11,7 @@ const poppins = Poppins({
 
 export default function Home() {
   return (
-    <main className={`${poppins.variable} lg:w-3/5 w-4/5 mx-auto pt-5 min-h-screen`}>
+    <main className={`${poppins.variable} lg:w-3/5 w-4/5 mx-auto pt-6 min-h-screen`}>
       <Navbar />
       <Main />
     </main>
