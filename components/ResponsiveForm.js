@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { NumericFormat } from "react-number-format";
 import { useForm, Controller } from "react-hook-form";
 import ChartComponent from "./ChartComponent";
@@ -16,6 +16,17 @@ const ResponsiveForm = () => {
   } = useForm();
   const [totalWorth, setTotalWorth] = useState(null);
   const [chartData, setChartData] = useState([]);
+
+  useEffect(() => {
+    // Auto-submit form when component mounts
+    handleSubmit(onSubmit)({
+      startingAmount: "10000",
+      additionalContribution: "1500",
+      contributionFrequency: "Annually",
+      rateOfReturn: "8",
+      yearsToGrow: "15",
+    });
+  }, [handleSubmit]);
 
   const onSubmit = (data) => {
     const parseNumericValue = (value) =>
@@ -99,7 +110,7 @@ const ResponsiveForm = () => {
             <Controller
               name="startingAmount"
               control={control}
-              defaultValue="1000"
+              defaultValue="10000"
               rules={{ required: "Required" }}
               render={({ field }) => (
                 <>
@@ -127,7 +138,7 @@ const ResponsiveForm = () => {
               <Controller
                 name="additionalContribution"
                 control={control}
-                defaultValue=""
+                defaultValue="1500"
                 render={({ field }) => (
                   <NumericFormat
                     {...field}
@@ -185,7 +196,7 @@ const ResponsiveForm = () => {
             <Controller
               name="yearsToGrow"
               control={control}
-              defaultValue="5"
+              defaultValue="15"
               rules={{ required: "Required" }}
               render={({ field }) => (
                 <>
