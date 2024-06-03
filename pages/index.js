@@ -1,19 +1,23 @@
-import { Poppins } from 'next/font/google';
+import { Poppins } from "next/font/google";
 import Navbar from "@/components/Navbar";
 import Main from "@/components/Main";
+import Footer from "@/components/Footer";
 
 const poppins = Poppins({
-  subsets: ['latin'],
-  display: 'swap',
-  variable: '--font-poppins',
-  weight: ['400', '500', '600', '700', '800', '900']
+  subsets: ["latin"],
+  display: "swap",
+  variable: "--font-poppins",
+  weight: ["400", "500", "600", "700", "800", "900"],
 });
 
 export default function Home() {
   return (
-    <main className={`${poppins.variable} lg:w-3/5 w-4/5 mx-auto pt-6 min-h-screen`}>
-      <Navbar />
-      <Main />
-    </main>
+    <div className={`${poppins.variable} flex flex-col min-h-screen p-2 lg:p-6`}>
+      <main className="flex-grow pt-6 lg:w-3/5 w-4/5 mx-auto mb-40 lg:mb-32">
+        <Navbar />
+        <Main />
+        <Footer />
+      </main>
+    </div>
   );
 }

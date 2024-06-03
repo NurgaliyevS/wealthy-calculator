@@ -9,7 +9,7 @@ function Table({ chartData }) {
   );
 
   return (
-    <div>
+    <div className="mb-24">
       <div className="overflow-x-auto">
         <table className="table">
           <thead className="bg-[#8884d8] text-stone-950 leading-normal text-sm">

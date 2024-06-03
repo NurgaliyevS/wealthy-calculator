@@ -19,8 +19,6 @@ function Main() {
       </section>
 
       <ResponsiveForm />
-
-      <div className="mt-10"></div>
     </>
   );
 }
