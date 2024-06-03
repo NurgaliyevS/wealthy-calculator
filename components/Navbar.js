@@ -11,8 +11,8 @@ function Navbar() {
         <p className="font-semibold">Wealth Calculator</p>
       </div>
       <div className="hidden lg:flex items-center ml-16 gap-4 md:gap-12">
-        <a className="link link-hover">Contacts</a>
-        <a className="link link-hover">Donate</a>
+        {/* <a className="link link-hover">Contacts</a>
+        <a className="link link-hover">Donate</a> */}
       </div>
     </div>
   );

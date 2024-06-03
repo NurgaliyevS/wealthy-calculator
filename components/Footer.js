@@ -3,6 +3,7 @@
 import Image from "next/image";
 import icon from "../public/icon.svg";
 import { SocialIcon } from "react-social-icons";
+import { track } from "@vercel/analytics";
 
 function Footer() {
   return (
@@ -18,16 +19,28 @@ function Footer() {
           url="https://www.linkedin.com/in/sabyr-nurgaliyev-43b4a822a/"
           className="w-2 h-2"
           style={{ width: 32, height: 32 }}
+          target="_blank"
+          onClick={() => {
+            track("clicked to linkedin");
+          }}
         />
         <SocialIcon
           url="https://t.me/yatemez"
           className="w-2 h-2"
           style={{ width: 32, height: 32 }}
+          target="_blank"
+          onClick={() => {
+            track("clicked to telegram");
+          }}
         />
         <SocialIcon
           url="mailto:nurgasab@gmail.com"
           className="w-2 h-2"
           style={{ width: 32, height: 32 }}
+          target="_blank"
+          onClick={() => {
+            track("clicked to telegram");
+          }}
         />
       </nav>
     </footer>

@@ -6,6 +6,7 @@ import { useForm, Controller } from "react-hook-form";
 import ChartComponent from "./ChartComponent";
 import PieChartComponent from "./PieChartComponent";
 import Table from "./Table";
+import { track } from "@vercel/analytics";
 
 const ResponsiveForm = () => {
   const {
@@ -18,7 +19,7 @@ const ResponsiveForm = () => {
   const [chartData, setChartData] = useState([]);
 
   useEffect(() => {
-    // Auto-submit form when component mounts
+    track("useEffect with default values");
     handleSubmit(onSubmit)({
       startingAmount: "10000",
       additionalContribution: "1500",
@@ -29,6 +30,7 @@ const ResponsiveForm = () => {
   }, [handleSubmit]);
 
   const onSubmit = (data) => {
+    track("onSubmit");
     const parseNumericValue = (value) =>
       parseFloat(String(value).replace(/[^0-9.-]+/g, ""));
 
