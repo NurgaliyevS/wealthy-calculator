@@ -3,9 +3,11 @@
 import Image from "next/image";
 import icon from "../public/icon.svg";
 import { SocialIcon } from "react-social-icons";
-import { track } from "@vercel/analytics";
+import { track } from "@vercel/analytics/server";
 
 function Footer() {
+  track("Footer is rendered");
+
   return (
     <footer className="pt-12 footer justify-between text-neutral-content">
       <aside className="items-center grid-flow-col">
@@ -39,7 +41,7 @@ function Footer() {
           style={{ width: 32, height: 32 }}
           target="_blank"
           onClick={() => {
-            track("clicked to telegram");
+            track("clicked to gmail");
           }}
         />
       </nav>

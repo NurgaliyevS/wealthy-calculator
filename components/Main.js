@@ -1,7 +1,10 @@
 "use client";
 import ResponsiveForm from "./ResponsiveForm.js";
+import { track } from "@vercel/analytics/server";
 
 function Main() {
+  track("Main is rendered");
+  
   return (
     <>
       <section>

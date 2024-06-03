@@ -1,7 +1,10 @@
 import React from "react";
 import { ResponsiveContainer, PieChart, Pie, Cell, Tooltip } from "recharts";
+import { track } from "@vercel/analytics";
 
 function PieChartComponent({ chartData }) {
+  track("PieChartComponent is rendered");
+
   const COLORS = {
     startingAmount: "#8884d8",
     totalContributions: "#82ca9d",

@@ -10,9 +10,12 @@ import {
   BarChart,
   ResponsiveContainer,
 } from "recharts";
+import { track } from "@vercel/analytics";
 
 const ChartComponent = ({ chartData }) => {
   const [requiresMargin, setRequiresMargin] = useState(false);
+
+  track("ChartComponent is rendered");
 
   const hasContributions = chartData.some(
     (data) => data?.totalContributions > 0

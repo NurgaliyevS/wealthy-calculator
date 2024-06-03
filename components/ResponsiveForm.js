@@ -6,7 +6,7 @@ import { useForm, Controller } from "react-hook-form";
 import ChartComponent from "./ChartComponent";
 import PieChartComponent from "./PieChartComponent";
 import Table from "./Table";
-import { track } from "@vercel/analytics";
+import { track } from "@vercel/analytics/server";
 
 const ResponsiveForm = () => {
   const {
@@ -17,6 +17,8 @@ const ResponsiveForm = () => {
   } = useForm();
   const [totalWorth, setTotalWorth] = useState(null);
   const [chartData, setChartData] = useState([]);
+
+  track("ResponsiveForm is rendered");
 
   useEffect(() => {
     track("useEffect with default values");
@@ -114,23 +116,26 @@ const ResponsiveForm = () => {
               control={control}
               defaultValue="10000"
               rules={{ required: "Required" }}
-              render={({ field }) => (
-                <>
-                  <NumericFormat
-                    {...field}
-                    className="input input-sm input-bordered w-full lg:w-36"
-                    placeholder="$"
-                    thousandSeparator={true}
-                    prefix="$ "
-                    allowNegative={false}
-                  />
-                  {errors.startingAmount && (
-                    <span className="text-red-400 text-xs mt-1">
-                      {errors.startingAmount.message}
-                    </span>
-                  )}
-                </>
-              )}
+              render={({ field }) => {
+                track("typing into startingAmount");
+                return (
+                  <>
+                    <NumericFormat
+                      {...field}
+                      className="input input-sm input-bordered w-full lg:w-36"
+                      placeholder="$"
+                      thousandSeparator={true}
+                      prefix="$ "
+                      allowNegative={false}
+                    />
+                    {errors.startingAmount && (
+                      <span className="text-red-400 text-xs mt-1">
+                        {errors.startingAmount.message}
+                      </span>
+                    )}
+                  </>
+                );
+              }}
             />
           </div>
 
@@ -141,16 +146,20 @@ const ResponsiveForm = () => {
                 name="additionalContribution"
                 control={control}
                 defaultValue="1500"
-                render={({ field }) => (
-                  <NumericFormat
-                    {...field}
-                    className="input input-sm input-bordered w-full lg:w-36"
-                    placeholder="$"
-                    thousandSeparator={true}
-                    prefix="$ "
-                    allowNegative={false}
-                  />
-                )}
+                render={({ field }) => {
+                  track("typing into additionalContribution");
+
+                  return (
+                    <NumericFormat
+                      {...field}
+                      className="input input-sm input-bordered w-full lg:w-36"
+                      placeholder="$"
+                      thousandSeparator={true}
+                      prefix="$ "
+                      allowNegative={false}
+                    />
+                  );
+                }}
               />
             </div>
 
@@ -174,22 +183,25 @@ const ResponsiveForm = () => {
               control={control}
               defaultValue="8"
               rules={{ required: "Required" }}
-              render={({ field }) => (
-                <>
-                  <NumericFormat
-                    {...field}
-                    className="input input-sm input-bordered w-full lg:w-20"
-                    suffix={".00%"}
-                    placeholder="%"
-                    allowNegative={false}
-                  />
-                  {errors.rateOfReturn && (
-                    <span className="text-red-500 text-xs mt-1">
-                      {errors.rateOfReturn.message}
-                    </span>
-                  )}
-                </>
-              )}
+              render={({ field }) => {
+                track("typing into rateOfReturn");
+                return (
+                  <>
+                    <NumericFormat
+                      {...field}
+                      className="input input-sm input-bordered w-full lg:w-20"
+                      suffix={".00%"}
+                      placeholder="%"
+                      allowNegative={false}
+                    />
+                    {errors.rateOfReturn && (
+                      <span className="text-red-500 text-xs mt-1">
+                        {errors.rateOfReturn.message}
+                      </span>
+                    )}
+                  </>
+                );
+              }}
             />
           </div>
 
@@ -200,20 +212,23 @@ const ResponsiveForm = () => {
               control={control}
               defaultValue="15"
               rules={{ required: "Required" }}
-              render={({ field }) => (
-                <>
-                  <NumericFormat
-                    {...field}
-                    className="input input-sm input-bordered w-full lg:w-20"
-                    allowNegative={false}
-                  />
-                  {errors.yearsToGrow && (
-                    <span className="text-red-500 text-xs m-0 p-0 mt-1">
-                      {errors.yearsToGrow.message}
-                    </span>
-                  )}
-                </>
-              )}
+              render={({ field }) => {
+                track("typing into yearsToGrow");
+                return (
+                  <>
+                    <NumericFormat
+                      {...field}
+                      className="input input-sm input-bordered w-full lg:w-20"
+                      allowNegative={false}
+                    />
+                    {errors.yearsToGrow && (
+                      <span className="text-red-500 text-xs m-0 p-0 mt-1">
+                        {errors.yearsToGrow.message}
+                      </span>
+                    )}
+                  </>
+                );
+              }}
             />
           </div>
         </section>
