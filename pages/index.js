@@ -17,7 +17,7 @@ export default function Home() {
       className={`${poppins.variable} flex flex-col min-h-screen p-2 lg:p-6`}
     >
       <Head>
-        <title>Weeealth - Empowering Your Financial Journey</title>
+        <title>Invest first & spend what's left</title>
         <meta name="description" content="Invest first & spend what's left" />
         <meta
           name="keywords"
