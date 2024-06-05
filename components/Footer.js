@@ -28,14 +28,14 @@ function Footer() {
           title="LinkedIn"
         />
         <SocialIcon
-          url="https://t.me/yatemez"
+          url="https://x.com/tech_nurgaliyev"
           className="w-2 h-2"
           style={{ width: 32, height: 32 }}
           target="_blank"
           onClick={() => {
-            track("clicked to telegram");
+            track("clicked to twitter");
           }}
-          title="Telegram"
+          title="Twitter"
         />
         <SocialIcon
           url="mailto:nurgasab@gmail.com"
