@@ -12,7 +12,7 @@ function Footer() {
     <footer className="pt-12 footer justify-between text-neutral-content">
       <aside className="items-center grid-flow-col">
         <div className="flex items-center gap-2">
-          <Image src={icon} width={96} height={166} className="w-8 h-8" />
+          <Image src={icon} alt="wealth icon" width={96} height={166} className="w-8 h-8" />
         </div>
         <p>Copyright © 2024 - All right reserved</p>
       </aside>
