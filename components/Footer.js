@@ -25,6 +25,7 @@ function Footer() {
           onClick={() => {
             track("clicked to linkedin");
           }}
+          title="LinkedIn"
         />
         <SocialIcon
           url="https://t.me/yatemez"
@@ -34,6 +35,7 @@ function Footer() {
           onClick={() => {
             track("clicked to telegram");
           }}
+          title="Telegram"
         />
         <SocialIcon
           url="mailto:nurgasab@gmail.com"
@@ -43,6 +45,7 @@ function Footer() {
           onClick={() => {
             track("clicked to gmail");
           }}
+          title="Gmail"
         />
       </nav>
     </footer>

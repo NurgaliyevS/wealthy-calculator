@@ -236,6 +236,7 @@ const ResponsiveForm = () => {
         <button
           type="submit"
           className={`btn mt-4 ${isValid ? "btn-primary" : "btn-neutral"}`}
+          title="Calculate"
         >
           Calculate
         </button>
