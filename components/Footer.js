@@ -3,7 +3,7 @@
 import Image from "next/image";
 import icon from "../public/icon.svg";
 import { SocialIcon } from "react-social-icons";
-import { usePlausible } from 'next-plausible'
+import { usePlausible } from 'next-plausible';
 
 function Footer() {
   const plausible = usePlausible();

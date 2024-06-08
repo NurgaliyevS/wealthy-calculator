@@ -6,6 +6,7 @@ import { useForm, Controller } from "react-hook-form";
 import ChartComponent from "./ChartComponent";
 import PieChartComponent from "./PieChartComponent";
 import Table from "./Table";
+import { usePlausible } from 'next-plausible';
 
 const ResponsiveForm = () => {
   const {
@@ -16,6 +17,8 @@ const ResponsiveForm = () => {
   } = useForm();
   const [totalWorth, setTotalWorth] = useState(null);
   const [chartData, setChartData] = useState([]);
+
+  const plausible = usePlausible();
 
   useEffect(() => {
     handleSubmit(onSubmit)({
@@ -28,6 +31,7 @@ const ResponsiveForm = () => {
   }, [handleSubmit]);
 
   const onSubmit = (data) => {
+    plausible('onSubmit', { props: { data } });
     const parseNumericValue = (value) =>
       parseFloat(String(value).replace(/[^0-9.-]+/g, ""));
 
