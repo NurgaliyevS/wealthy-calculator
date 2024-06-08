@@ -6,7 +6,6 @@ import { useForm, Controller } from "react-hook-form";
 import ChartComponent from "./ChartComponent";
 import PieChartComponent from "./PieChartComponent";
 import Table from "./Table";
-import { track } from "@vercel/analytics/server";
 
 const ResponsiveForm = () => {
   const {
@@ -18,10 +17,7 @@ const ResponsiveForm = () => {
   const [totalWorth, setTotalWorth] = useState(null);
   const [chartData, setChartData] = useState([]);
 
-  track("ResponsiveForm is rendered");
-
   useEffect(() => {
-    track("useEffect with default values");
     handleSubmit(onSubmit)({
       startingAmount: "10000",
       additionalContribution: "1500",
@@ -32,7 +28,6 @@ const ResponsiveForm = () => {
   }, [handleSubmit]);
 
   const onSubmit = (data) => {
-    track("onSubmit");
     const parseNumericValue = (value) =>
       parseFloat(String(value).replace(/[^0-9.-]+/g, ""));
 
@@ -117,7 +112,6 @@ const ResponsiveForm = () => {
               defaultValue="10000"
               rules={{ required: "Required" }}
               render={({ field }) => {
-                track("typing into startingAmount");
                 return (
                   <>
                     <NumericFormat
@@ -147,8 +141,6 @@ const ResponsiveForm = () => {
                 control={control}
                 defaultValue="1500"
                 render={({ field }) => {
-                  track("typing into additionalContribution");
-
                   return (
                     <NumericFormat
                       {...field}
@@ -184,7 +176,6 @@ const ResponsiveForm = () => {
               defaultValue="8"
               rules={{ required: "Required" }}
               render={({ field }) => {
-                track("typing into rateOfReturn");
                 return (
                   <>
                     <NumericFormat
@@ -213,7 +204,6 @@ const ResponsiveForm = () => {
               defaultValue="15"
               rules={{ required: "Required" }}
               render={({ field }) => {
-                track("typing into yearsToGrow");
                 return (
                   <>
                     <NumericFormat

@@ -3,16 +3,19 @@
 import Image from "next/image";
 import icon from "../public/icon.svg";
 import { SocialIcon } from "react-social-icons";
-import { track } from "@vercel/analytics/server";
 
 function Footer() {
-  track("Footer is rendered");
-
   return (
     <footer className="pt-12 footer justify-between text-neutral-content">
       <aside className="items-center grid-flow-col">
         <div className="flex items-center gap-2">
-          <Image src={icon} alt="wealth icon" width={96} height={166} className="w-8 h-8" />
+          <Image
+            src={icon}
+            alt="wealth icon"
+            width={96}
+            height={166}
+            className="w-8 h-8"
+          />
         </div>
         <p>Copyright © 2024 - All right reserved</p>
       </aside>
@@ -22,9 +25,7 @@ function Footer() {
           className="w-2 h-2"
           style={{ width: 32, height: 32 }}
           target="_blank"
-          onClick={() => {
-            track("clicked to linkedin");
-          }}
+          onClick={() => {}}
           title="LinkedIn"
         />
         <SocialIcon
@@ -32,9 +33,7 @@ function Footer() {
           className="w-2 h-2"
           style={{ width: 32, height: 32 }}
           target="_blank"
-          onClick={() => {
-            track("clicked to twitter");
-          }}
+          onClick={() => {}}
           title="Twitter"
         />
         <SocialIcon
@@ -42,9 +41,7 @@ function Footer() {
           className="w-2 h-2"
           style={{ width: 32, height: 32 }}
           target="_blank"
-          onClick={() => {
-            track("clicked to gmail");
-          }}
+          onClick={() => {}}
           title="Gmail"
         />
       </nav>

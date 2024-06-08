@@ -1,9 +1,6 @@
 "use client";
-import { track } from "@vercel/analytics";
 
 function Table({ chartData }) {
-  track("table is rendered");
-
   const showAdditionalContribution = chartData.some(
     (data) => data.additionalContribution > 0
   );
