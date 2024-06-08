@@ -31,7 +31,7 @@ const ResponsiveForm = () => {
   }, [handleSubmit]);
 
   const onSubmit = (data) => {
-    plausible('onSubmit', { props: { data: data } });
+    plausible('onSubmit', { props: { http: '123' } });
     const parseNumericValue = (value) =>
       parseFloat(String(value).replace(/[^0-9.-]+/g, ""));
 
