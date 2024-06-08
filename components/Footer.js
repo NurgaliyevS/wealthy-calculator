@@ -3,8 +3,11 @@
 import Image from "next/image";
 import icon from "../public/icon.svg";
 import { SocialIcon } from "react-social-icons";
+import { usePlausible } from 'next-plausible'
 
 function Footer() {
+  const plausible = usePlausible();
+
   return (
     <footer className="pt-12 footer justify-between text-neutral-content">
       <aside className="items-center grid-flow-col">
@@ -25,7 +28,9 @@ function Footer() {
           className="w-2 h-2"
           style={{ width: 32, height: 32 }}
           target="_blank"
-          onClick={() => {}}
+          onClick={() => {
+            plausible("Linkedin");
+          }}
           title="LinkedIn"
         />
         <SocialIcon
@@ -33,7 +38,9 @@ function Footer() {
           className="w-2 h-2"
           style={{ width: 32, height: 32 }}
           target="_blank"
-          onClick={() => {}}
+          onClick={() => {
+            plausible("Twitter");
+          }}
           title="Twitter"
         />
         <SocialIcon
@@ -41,7 +48,9 @@ function Footer() {
           className="w-2 h-2"
           style={{ width: 32, height: 32 }}
           target="_blank"
-          onClick={() => {}}
+          onClick={() => {
+            plausible("Gmail");
+          }}
           title="Gmail"
         />
       </nav>
