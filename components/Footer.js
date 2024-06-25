@@ -3,10 +3,15 @@
 import Image from "next/image";
 import icon from "../public/icon.svg";
 import { SocialIcon } from "react-social-icons";
-import { usePlausible } from 'next-plausible';
+import { usePlausible } from "next-plausible";
 
 function Footer() {
   const plausible = usePlausible();
+
+  const handleClick = (event) => {
+    event.preventDefault();
+    window.open("https://tripplanss.com", "_blank");
+  }
 
   return (
     <footer className="pt-12 footer justify-between text-neutral-content">
@@ -52,6 +57,14 @@ function Footer() {
             plausible("Gmail");
           }}
           title="Gmail"
+        />{" "}
+        <Image
+          src={"/tripplanss.com.webp"}
+          width={32}
+          height={32}
+          alt="TripPlanss - Plan a trip with multiple destinations"
+          className="w-8 h-8 flex items-center justify-center mt-1 cursor-pointer"
+          onClick={handleClick}
         />
       </nav>
     </footer>
