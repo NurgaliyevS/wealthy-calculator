@@ -21,7 +21,7 @@ export default function Document() {
         <meta name="apple-mobile-web-app-title" content="Weeealth" />
         <meta name="application-name" content="Weeealth" />
 
-        <meta property="og:image" content="https://weeealth.com/ogImage.png" />
+        <meta property="og:image" content="https://weeealth.com/og-image.png" />
         <meta
           property="og:image:alt"
           content="Weeealth - Everything you need to invest money wisely"
