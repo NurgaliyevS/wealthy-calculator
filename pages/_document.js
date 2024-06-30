@@ -33,7 +33,7 @@ export default function Document() {
         <meta property="og:type" content="website" />
         <meta
           property="og:title"
-          content="Weeealth - Everything you need to invest money wisely"
+          content="Wealth Calculator: Everything you need to invest money wisely"
         />
         <meta
           property="og:description"
