@@ -3,6 +3,7 @@ import Head from "next/head";
 import Navbar from "@/components/Navbar";
 import Main from "@/components/Main";
 import Footer from "@/components/Footer";
+import Links from "@/components/Links";
 
 const poppins = Poppins({
   subsets: ["latin"],
@@ -23,6 +24,7 @@ export default function Home() {
         <Navbar />
         <Main />
         <Footer />
+        <Links />
       </main>
     </div>
   );

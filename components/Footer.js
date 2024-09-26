@@ -14,7 +14,7 @@ function Footer() {
   }
 
   return (
-    <footer className="pt-12 footer justify-between text-neutral-content">
+    <footer className="pt-12 footer justify-between text-neutral-content mb-10">
       <aside className="items-center grid-flow-col">
         <div className="flex items-center gap-2">
           <Image
