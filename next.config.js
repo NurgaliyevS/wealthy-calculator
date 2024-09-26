@@ -5,4 +5,14 @@ const nextConfig = withPlausibleProxy()({
   reactStrictMode: true,
 });
 
-module.exports = nextConfig;
+module.exports = {
+  ...nextConfig,
+  async rewrites() {
+    return [
+      {
+        source: '/invest/:amount-at-:rate-percent-for-:years-years',
+        destination: '/invest/:amount/:rate/:years',
+      },
+    ];
+  },
+};

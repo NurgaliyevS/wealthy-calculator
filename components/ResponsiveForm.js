@@ -8,13 +8,15 @@ import PieChartComponent from "./PieChartComponent";
 import Table from "./Table";
 import { usePlausible } from "next-plausible";
 
-const ResponsiveForm = () => {
+const ResponsiveForm = ({ initialValues }) => {
   const {
     control,
     handleSubmit,
     register,
     formState: { errors, isValid },
-  } = useForm();
+  } = useForm({
+    defaultValues: initialValues,
+  });
   const [totalWorth, setTotalWorth] = useState(null);
   const [chartData, setChartData] = useState([]);
 
