@@ -76,7 +76,7 @@ const Table = ({ chartData }) => {
           onClick={exportCSV}
           className="px-4 py-2 bg-green-500 text-white rounded hover:bg-green-600 flex items-center"
         >
-          Export to CSV
+          Export to Excel
         </button>
       </div>
       <div className="overflow-x-auto">
