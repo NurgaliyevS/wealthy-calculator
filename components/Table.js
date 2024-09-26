@@ -1,5 +1,4 @@
-import React, { useState } from "react";
-import { CSVLink } from "react-csv";
+import React from "react";
 import { toast } from "react-toastify";
 
 const Table = ({ chartData }) => {
@@ -11,36 +10,56 @@ const Table = ({ chartData }) => {
   );
 
   const headers = [
-    { label: "Year", key: "year" },
-    { label: "Starting Amount", key: "startingAmount" },
-    ...(showAdditionalContribution
-      ? [{ label: "Additional Contribution", key: "additionalContribution" }]
-      : []),
-    ...(showTotalContributions
-      ? [{ label: "Total Contributions", key: "totalContributions" }]
-      : []),
-    { label: "Interest Earned", key: "interestEarned" },
-    { label: "Total Interest Earned", key: "totalInterest" },
-    { label: "End Balance", key: "total" },
+    "Year",
+    "Starting Amount",
+    ...(showAdditionalContribution ? ["Additional Contribution"] : []),
+    ...(showTotalContributions ? ["Total Contributions"] : []),
+    "Interest Earned",
+    "Total Interest Earned",
+    "End Balance"
   ];
 
+  const formatNumber = (num) => `$${num.toLocaleString()}`;
+
+  const formatCSV = (data) => {
+    const csvRows = [
+      headers,
+      ...data.map(row => [
+        row.year,
+        formatNumber(row.startingAmount),
+        ...(showAdditionalContribution ? [formatNumber(row.additionalContribution)] : []),
+        ...(showTotalContributions ? [formatNumber(row.totalContributions)] : []),
+        formatNumber(row.interestEarned),
+        formatNumber(row.totalInterest),
+        formatNumber(row.total)
+      ])
+    ];
+
+    const csvContent = csvRows.map(row => row.join(';')).join('\n');
+
+    // Add BOM for Excel
+    const BOM = '\uFEFF';
+    return BOM + csvContent;
+  };
+
+  const exportCSV = () => {
+    const csvContent = formatCSV(chartData);
+    const blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' });
+    const link = document.createElement("a");
+    if (link.download !== undefined) {
+      const url = URL.createObjectURL(blob);
+      link.setAttribute("href", url);
+      link.setAttribute("download", "investment_data.csv");
+      link.style.visibility = 'hidden';
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+    }
+  };
+
   const copyToClipboard = () => {
-    const rows = chartData.map((data) => [
-      data.year,
-      data.startingAmount,
-      ...(showAdditionalContribution ? [data.additionalContribution] : []),
-      ...(showTotalContributions ? [data.totalContributions] : []),
-      data.interestEarned,
-      data.totalInterest,
-      data.total,
-    ]);
-
-    const tableContent = [headers.map((h) => h.label), ...rows]
-      .map((row) => row.join("\t"))
-      .join("\n");
-
+    const tableContent = formatCSV(chartData);
     navigator.clipboard.writeText(tableContent);
-
     toast.success("Table copied to clipboard!");
   };
 
@@ -53,69 +72,36 @@ const Table = ({ chartData }) => {
         >
           Copy Table
         </button>
-        <CSVLink
-          data={chartData}
-          headers={headers}
-          filename="investment_data.csv"
+        <button
+          onClick={exportCSV}
           className="px-4 py-2 bg-green-500 text-white rounded hover:bg-green-600 flex items-center"
-          separator=","
         >
           Export to CSV
-        </CSVLink>
+        </button>
       </div>
       <div className="overflow-x-auto">
         <table className="table">
           <thead className="bg-[#8884d8] text-stone-950 leading-normal text-sm">
             <tr>
-              <th className="text-center">Year</th>
-              <th className="text-center">
-                Starting Amount
-              </th>
-              {showAdditionalContribution && (
-                <th className="text-center">
-                  Additional Contribution
-                </th>
-              )}
-              {showTotalContributions && (
-                <th className="text-center">
-                  Total Contributions
-                </th>
-              )}
-              <th className="text-center">
-                Interest Earned
-              </th>
-              <th className="text-center">
-                Total Interest Earned
-              </th>
-              <th className="text-center">
-                End Balance
-              </th>
+              {headers.map((header, index) => (
+                <th key={index} className="text-center">{header}</th>
+              ))}
             </tr>
           </thead>
           <tbody>
             {chartData.map((data, index) => (
               <tr key={index}>
                 <td className="text-center">{data.year}</td>
-                <td className="text-center">
-                  ${data.startingAmount.toLocaleString()}
-                </td>
+                <td className="text-center">{formatNumber(data.startingAmount)}</td>
                 {showAdditionalContribution && (
-                  <td className="text-center">
-                    ${data.additionalContribution.toLocaleString()}
-                  </td>
+                  <td className="text-center">{formatNumber(data.additionalContribution)}</td>
                 )}
                 {showTotalContributions && (
-                  <td className="text-center">
-                    ${data.totalContributions.toLocaleString()}
-                  </td>
+                  <td className="text-center">{formatNumber(data.totalContributions)}</td>
                 )}
-                <td className="text-center">
-                  ${data.interestEarned.toLocaleString()}
-                </td>
-                <td className="text-center">
-                  ${data.totalInterest.toLocaleString()}
-                </td>
-                <td className="text-center">${data.total.toLocaleString()}</td>
+                <td className="text-center">{formatNumber(data.interestEarned)}</td>
+                <td className="text-center">{formatNumber(data.totalInterest)}</td>
+                <td className="text-center">{formatNumber(data.total)}</td>
               </tr>
             ))}
           </tbody>
