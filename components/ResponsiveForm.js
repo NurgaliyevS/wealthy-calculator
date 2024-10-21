@@ -153,7 +153,7 @@ const ResponsiveForm = ({ initialValues }) => {
               <Controller
                 name="additionalContribution"
                 control={control}
-                defaultValue="1500"
+                defaultValue="500"
                 render={({ field }) => {
                   return (
                     <NumericFormat
@@ -173,7 +173,7 @@ const ResponsiveForm = ({ initialValues }) => {
               <span className="pb-1 text-xs">&nbsp;</span>
               <select
                 className="select select-sm select-bordered w-full lg:w-36"
-                defaultValue="Annually"
+                defaultValue="Monthly"
                 {...register("contributionFrequency")}
               >
                 <option value="Annually">Annually</option>
@@ -187,7 +187,7 @@ const ResponsiveForm = ({ initialValues }) => {
             <Controller
               name="rateOfReturn"
               control={control}
-              defaultValue="8"
+              defaultValue="10"
               rules={{ required: "Required" }}
               render={({ field }) => {
                 return (
@@ -215,7 +215,7 @@ const ResponsiveForm = ({ initialValues }) => {
             <Controller
               name="yearsToGrow"
               control={control}
-              defaultValue="15"
+              defaultValue="30"
               rules={{ required: "Required" }}
               render={({ field }) => {
                 return (
