@@ -10,11 +10,14 @@ function Footer() {
   const plausible = usePlausible();
 
   const projects = [
-    { name: "Environmental Job Boards", url: "https://environmentaljobboards.com" },
-    { name: "SubPage", url: "https://subpage.io" },
+    { name: "MVP Agency", url: "https://mvpagency.org" },
+    { name: "Reddit Agency", url: "https://redditagency.com" },
     { name: "PregnantMeal", url: "https://pregnantmeal.com" },
+    { name: "Best Website Games", url: "https://bestwebsitegames.com" },
+    { name: "SubPage", url: "https://subpage.io" },
     { name: "UptimeFriend", url: "https://uptimefriend.com" },
     { name: "TripPlanss", url: "https://tripplanss.com" },
+    { name: "Environmental Job Boards", url: "https://environmentaljobboards.com" },
   ];
 
   const socialIcons = [
