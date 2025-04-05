@@ -10,6 +10,7 @@ function Footer() {
   const plausible = usePlausible();
 
   const projects = [
+    { name: "Reddit Scheduler", url: "https://www.redditscheduler.com" },
     { name: "MVP Agency", url: "https://mvpagency.org" },
     { name: "Reddit Agency", url: "https://redditagency.com" },
     { name: "PregnantMeal", url: "https://pregnantmeal.com" },
