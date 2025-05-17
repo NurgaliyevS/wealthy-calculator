@@ -23,7 +23,7 @@ function Footer() {
 
   const socialIcons = [
     {
-      url: "https://www.linkedin.com/in/sabyr-n-43b4a822a/",
+      url: "https://www.linkedin.com/in/samat-n-43b4a822a/",
       name: "LinkedIn",
       plausibleEvent: "Linkedin"
     },
